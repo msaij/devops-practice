@@ -8,6 +8,6 @@ For some of the scripts you need to be a root user or have sudo permission.
 After cloning the repository, redirect to the shell folder in your terminal.
 To run/edit a shell script:
 - Type this command by replacing the "file-name.sh" with the actual name of the file:
-  > sh file-name.sh or bash file-name.sh
+  `sh file-name.sh or bash file-name.sh`
 - To edit using nano or vi in your terminal:
-  > nano file-name.sh
+  `nano file-name.sh`
