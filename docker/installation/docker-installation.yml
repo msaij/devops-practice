@@ -1,0 +1,46 @@
+---
+- name: Docker installation
+  hosts: myservr
+
+  tasks:
+
+  - name: Get the package information
+    shell: "docker -v | cut -d ' ' -f 3 | cut -d ',' -f 1"
+    register: version
+  - debug:
+      msg: '{{ (version.stdout) | ternary( "Docker version is "+(version.stdout), "Docker is not installed" ) }}'
+
+  - name: Installing docker dependencies
+    yum:
+      name: "{{dependencies}}"
+      state: latest
+    vars:
+      dependencies:
+      - yum-utils
+
+  - name: docker-ce.repo
+    shell: yum-config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+    args:
+      creates: /etc/yum.repos.d/docker-ce.repo
+
+  - name: Install docker engine
+    yum:
+      name: "{{dockerengine}}"
+      state: latest
+    vars:
+      dockerengine:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    when: version.stdout == ""
+
+  - name: Starting docker
+    service:
+      name: docker
+      state: started
+
+  - name: Testing working of docker
+    shell: 'docker run hello-world'
+    register: command_output
+  - debug:
+      var: command_output.stdout_lines
