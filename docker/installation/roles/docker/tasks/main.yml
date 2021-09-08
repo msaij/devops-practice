@@ -1,0 +1,27 @@
+---
+
+- name: Get the package information
+  shell: "docker -v | cut -d ' ' -f 3 | cut -d ',' -f 1"
+  register: version
+- debug:
+    msg: '{{ (version.stdout) | ternary( "Docker version is "+(version.stdout), "Docker is not installed" ) }}'
+
+- name: Installing docker dependencies
+  yum:
+    name: "{{dependencies}}"
+    state: latest
+  when: version.stdout == ""
+
+- name: docker-ce.repo
+  shell: yum-config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+  args:
+    creates: /etc/yum.repos.d/docker-ce.repo
+  when: version.stdout == ""
+
+- name: Install docker engine
+  yum:
+    name: "{{dockerengine}}"
+    state: latest
+  when: version.stdout == ""
+
+- import_tasks: start-test.yml

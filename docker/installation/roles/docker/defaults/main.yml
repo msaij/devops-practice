@@ -1,0 +1,8 @@
+---
+# defaults file for /msaij/eci-practice/docker/installation/roles/docker
+dependencies:
+  - yum-utils
+dockerengine:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io

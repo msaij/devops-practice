@@ -1,0 +1,12 @@
+---
+
+- name: Starting docker
+  service:
+    name: docker
+    state: started
+
+- name: Testing working of docker
+  shell: 'docker run hello-world'
+  register: command_output
+- debug:
+    var: command_output.stdout_lines

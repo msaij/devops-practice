@@ -17,11 +17,13 @@
     vars:
       dependencies:
       - yum-utils
-
+    when: version.stdout == ""
+    
   - name: docker-ce.repo
     shell: yum-config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
     args:
       creates: /etc/yum.repos.d/docker-ce.repo
+    when: version.stdout == ""
 
   - name: Install docker engine
     yum:
@@ -32,7 +34,7 @@
       - docker-ce
       - docker-ce-cli
       - containerd.io
-    when: version.stdout == ""
+    cc
 
   - name: Starting docker
     service:

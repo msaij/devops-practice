@@ -1,0 +1,5 @@
+---
+- name: Docker installation
+  hosts: myservr
+  roles:
+    - docker
