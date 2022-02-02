@@ -1,0 +1,18 @@
+#!/bin/bash
+ 
+read -p "Enter a:" first
+read -p "Enter b: " second
+ 
+if [ $first -le 10 ] || [ $second -gt 20 ]
+then
+ echo "Atleast one conditions is true"
+else
+ echo "Both conditions are failed"
+fi
+
+if [ $first -le 10 ]  && [ $second -gt 20 ]
+then
+ echo "Both conditions are true"
+else
+ echo "Atleast one conditions is false"
+fi

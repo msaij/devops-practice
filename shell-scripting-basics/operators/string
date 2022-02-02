@@ -1,0 +1,42 @@
+#!/bin/bash
+
+s=""
+s1="notemptystring"
+s2="texthere"
+
+echo "s=' '"
+if [ -z $s ]
+then
+ echo 'string is empty'
+else
+ echo 'string is not empty'
+fi
+
+echo s1=$s1 and s2=$s2
+if [ -n $s1  ]
+then
+ echo 'string is not empty'
+else
+ echo 'string is empty'
+fi
+
+if [ $s1 = $s2 ]
+then
+ echo 'both are same'
+else
+ echo 'both are different'
+fi
+
+if [ $s1 != $s2 ]
+then
+ echo "Both string are not same"
+else
+ echo "Both string are same"
+fi
+
+if [ $s1 ]
+then
+ echo "string is not empty"
+else
+ echo "string is empty"
+fi

@@ -1,0 +1,32 @@
+#!/bin/bash
+
+forloop(){
+ for a in $(seq 1 10)
+  do
+   if [ $a -ge 5 ]
+   then
+    echo $a
+   fi
+  done
+}
+
+
+whileloop(){
+ x=1
+ while [ $x -lt 10 ]
+ do
+  echo $x
+  x=`expr $x + 1`
+ done
+}
+
+untiloop(){
+ y=0
+ until [ $y -eq 10 ]
+ do
+  echo $y
+  y=`expr $y + 1`
+ done
+}
+
+"$@"

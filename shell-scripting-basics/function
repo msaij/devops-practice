@@ -1,0 +1,20 @@
+#!/bin/sh
+
+read -p "enter x:" x
+read -p "enter y:" y
+
+add(){
+ echo $((x+y))
+}
+
+sub(){
+ echo $((x-y))
+}
+
+all(){
+ a=$(add)
+ b=$(sub)
+ echo sum is $a and sub is $b
+}
+
+all

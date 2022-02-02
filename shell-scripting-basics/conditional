@@ -1,0 +1,53 @@
+#!/bin/bash
+
+echo -e "pick one:\n 1.only if\n 2.if else\n 3.ladder if else\n 4.nested if"
+read -p "Choice:" x
+
+name="sai"
+case "$x" in
+
+ "1")
+   if [ $name = "sai" ]
+   then
+    echo "hello sai"
+   fi
+   ;;
+
+ "2")
+   if [ $name = "ben" ]
+   then
+    echo "this is ben!"
+   else
+    echo "that is someone else"
+   fi
+   ;;
+
+ "3")
+   words=`wc -w <<< $name`
+   if [ $words -eq 0 ]
+   then
+    echo "the name is not valid"
+   elif [ $words -eq 1 ]
+   then
+    echo "the name has only one word"
+   else
+    echo "the name field is not empty"    
+   fi
+   ;;
+
+ "4")
+   name="ben"
+   if [ $name != " " ]
+   then
+    if [ $name = "sai" ]
+    then
+     echo "name is sai"
+    else
+     echo "the name is $name"
+    fi
+   else
+    echo "there is no name"
+   fi
+   ;;
+
+esac
