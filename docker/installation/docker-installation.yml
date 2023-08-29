@@ -34,7 +34,6 @@
       - docker-ce
       - docker-ce-cli
       - containerd.io
-    cc
 
   - name: Starting docker
     service:
